@@ -1,6 +1,6 @@
 <template>
     <footer class="footer mt-4">
-        <div id="footer" class="container is-max-desktop p-32">
+        <div id="footer" class="container is-fluid">
             <div class="content">
                 <div class="columns is-mobile">
                     <div class="column is-half">

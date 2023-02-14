@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <div class="container is-max-desktop p-32">
+        <div class="container is-fluid">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <router-link class="navbar-item" to="/">
@@ -15,50 +15,60 @@
                 
                 <div class="navbar-menu">
                     <div class="navbar-start">
-                        <router-link class="navbar-item" to="/home">About</router-link>
-                        <a class="navbar-item" target="_blank" href="https://api-tools.codex.id">API</a>
+                        <router-link class="navbar-item" to="/">Home</router-link>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <div class="navbar-link">Tools</div>
+                            <div class="navbar-dropdown">
+                                <router-link to="/dashboard-100" class="navbar-item">Tools 100</router-link>
+                                <router-link to="/dashboard-101" class="navbar-item">Tools 101</router-link>
+                                <hr class="navbar-divider">
+                                <router-link to="#" class="navbar-item has-text-danger">Peta Wilayah Indonesia</router-link>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
                                 <a class="button is-small has-background-white has-text-primary">
-                                    <!-- <strong>Hi.. {{ store?.userInfo?.name }}</strong> -->
+                                    <strong>Hi.. {{ store?.userInfo?.nama }}</strong>
                                 </a>
                                 <span class="button is-small is-outlined is-danger" v-on:click="userExit">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                 </span>
-                                <!-- <router-link to="/" class="exit button is-light">
-                                    <i class="fa-brands fa-square-github"></i>
-                                    <i class="fa-brands fa-github"></i>
-                                </router-link> -->
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- mobile sidebar -->
+                <Sidebar />
             </nav>
         </div>
     </div>
 </template>
 
 <script>
+import { authStore } from '@/stores/auth';
+import Sidebar from './Sidebar.vue';
 export default {
-    name: 'Header',
-    // setup() {
-    //     const store = authStore();
-    //     return { store };
-    // },
+    name: "Header",
+    setup() {
+        const store = authStore();
+        return { store };
+    },
     data() {
         return {
             name: null
-        }
+        };
+    },
+    mounted() {
+        
     },
     methods: {
-        userExit: async function() {
-            // await this.store.userExit();      
+        userExit: async function () {
+            await this.store.userExit();
         }
-    }
+    },
+    components: { Sidebar }
 }
 </script>

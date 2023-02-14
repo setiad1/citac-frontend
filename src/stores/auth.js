@@ -15,10 +15,11 @@ export const authStore = defineStore("auth", {
     actions: {
         async fetchUser() {
             // setAuthHeader(cookies.get('token'));
-            await axios.get("http://gis.beacukai.go.id:911/ext_be/api/user-info", {
+            await axios.get("data/user.json", {
                 // headers: { Authorization: `Bearer ${cookies.get('token')}` }
             }).then((res) => {
                 this.userInfo = res.data;
+                console.log(this.userInfo);
             }).catch((res) => {
                 // cookies.remove('token');
                 this.userInfo = null;

@@ -15,6 +15,18 @@ const routes = [
         name: 'home',
         meta: { layout: First },
         component: () => import('../views/HomeView.vue')
+    },
+    {
+        path: '/dashboard-100',
+        name: 'dash100',
+        meta: { layout: First },
+        component: () => import('../views/Dash100View.vue')
+    },
+    {
+        path: '/dashboard-101',
+        name: 'dash101',
+        meta: { layout: First },
+        component: () => import('../views/Dash101View.vue')
     }
 ]
 
