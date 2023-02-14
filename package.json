@@ -14,15 +14,12 @@
     "lodash": "^4.17.21",
     "pinia": "^2.0.30",
     "register-service-worker": "^1.7.2",
-    "resize-observer-polyfill": "^1.5.1",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
     "vue-cookies": "^1.8.2",
     "vue-echarts": "^6.5.4",
     "vue-loading-overlay": "^6.0.2",
-    "vue-resize-observer": "^2.0.16",
-    "vue-router": "^4.0.3",
-    "vue3-echarts": "^1.1.0"
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

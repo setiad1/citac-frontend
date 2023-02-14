@@ -15,6 +15,10 @@
                 <div class="is-size-5 has-text-weight-bold mb-4">Test</div>
                 <div><v-chart class="chart border" :option="line2" autoresize/></div>
             </div>
+            <div class="column">
+                <div class="is-size-5 has-text-weight-bold mb-4">Test</div>
+                <div><v-chart class="chart border" :option="pie1" autoresize/></div>
+            </div>
         </div>
     </div>
 </template>
@@ -207,6 +211,46 @@ export default defineComponent({
                         }
                         }
                     ]
+                }
+            ),
+            pie1: ref(
+                {
+                legend: {
+                    show: false
+                    // top: 'bottom',
+                    // left: 'left'
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                    }
+                },
+                series: [
+                    {
+                    name: 'Nightingale Chart',
+                    type: 'pie',
+                    radius: [30, 150],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: [
+                        { value: 40, name: 'rose 1' },
+                        { value: 38, name: 'rose 2' },
+                        { value: 32, name: 'rose 3' },
+                        { value: 30, name: 'rose 4' },
+                        { value: 28, name: 'rose 5' },
+                        { value: 26, name: 'rose 6' },
+                        { value: 22, name: 'rose 7' },
+                        { value: 18, name: 'rose 8' }
+                    ]
+                    }
+                ]
                 }
             )
         }
