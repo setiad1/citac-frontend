@@ -17,16 +17,22 @@ const routes = [
         component: () => import('../views/HomeView.vue')
     },
     {
-        path: '/dashboard-100',
-        name: 'dash100',
+        path: '/tool-101',
+        name: 'Tool 101',
         meta: { layout: First },
-        component: () => import('../views/Dash100View.vue')
+        component: () => import('../views/Tool101View.vue')
     },
     {
-        path: '/dashboard-101',
-        name: 'dash101',
+        path: '/tool-102',
+        name: 'Tool 102',
         meta: { layout: First },
-        component: () => import('../views/Dash101View.vue')
+        component: () => import('../views/Tool102View.vue')
+    },
+    {
+        path: '/tool-103',
+        name: 'Tool 103',
+        meta: { layout: First },
+        component: () => import('../views/Tool103View.vue')
     }
 ]
 
@@ -35,9 +41,10 @@ const router = createRouter({
   routes
 })
 
-router.beforeResolve(async to => {
+router.beforeEach(async to => {
     const store = authStore();
-    store.fetchUser();
+    store.fetchUserDev();
+    // store.fetchUser();
 
 
     // const token = window.$cookies.get('token');

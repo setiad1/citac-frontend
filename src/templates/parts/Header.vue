@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <div class="container is-fluid">
+        <div class="container is-fluid p-32">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <router-link class="navbar-item" to="/">
@@ -15,7 +15,22 @@
                 
                 <div class="navbar-menu">
                     <div class="navbar-start">
-                        <router-link class="navbar-item" to="/">Home</router-link>
+                        <template v-for="(item, index) in menus" :key="index">
+                            <template v-if="Object.keys(item.children).length === 0">
+                                <router-link class="navbar-item"  :to="item.to">{{ item.label }}</router-link>
+                            </template>
+                            <template v-else>
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <div class="navbar-link">{{ item.label }}</div>
+                                    <div class="navbar-dropdown">
+                                        <template v-for="(i, x) in item.children" :key="x">
+                                            <router-link :to="i.to" class="navbar-item">{{ i.label }}</router-link>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                        <!-- <router-link class="navbar-item" to="/">Home</router-link>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <div class="navbar-link">Tools</div>
                             <div class="navbar-dropdown">
@@ -24,13 +39,13 @@
                                 <hr class="navbar-divider">
                                 <router-link to="#" class="navbar-item has-text-danger">Peta Wilayah Indonesia</router-link>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="buttons">
-                                <a class="button is-small has-background-white has-text-primary">
+                                <a class="button is-small has-background-white has-text-dark">
                                     <strong>Hi.. {{ store?.userInfo?.nama }}</strong>
                                 </a>
                                 <span class="button is-small is-outlined is-danger" v-on:click="userExit">
@@ -58,15 +73,30 @@ export default {
     },
     data() {
         return {
-            name: null
+            name: null,
+            menus: {}
         };
     },
     mounted() {
-        
+        this.axios.get("data/menu.json", {
+        }).then((res) => {
+            this.menus = res.data;
+            // for (var i in this.menus) {
+            //     console.log(this.menus[i]);
+            //     if (Object.keys(this.menus[i].children).length !== 0) {
+            //         for (var j in this.menus[i].children) {
+            //             console.log(this.menus[i].children[j].label);
+            //         }
+            //     }
+            // }
+        }).catch((res) => {
+            console.log(res.data);
+        });
     },
     methods: {
         userExit: async function () {
-            await this.store.userExit();
+            await this.store.userExitDev();
+            // await this.store.userExit();
         }
     },
     components: { Sidebar }

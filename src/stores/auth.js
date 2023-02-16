@@ -1,9 +1,7 @@
-// /store/user.js
-import cookies from "vue-cookies";
 import router from "@/router";
 import axios from "axios";
 import { defineStore } from "pinia";
-import setAuthHeader from "@/utils/setAuthHeader";
+import cookies from "vue-cookies";
 
 export const authStore = defineStore("auth", {
     state: () => ({
@@ -14,19 +12,33 @@ export const authStore = defineStore("auth", {
     },
     actions: {
         async fetchUser() {
-            // setAuthHeader(cookies.get('token'));
-            await axios.get("data/user.json", {
-                // headers: { Authorization: `Bearer ${cookies.get('token')}` }
+            // production
+            await axios.get("../ext_be/api/user-info", {
             }).then((res) => {
                 this.userInfo = res.data;
-                console.log(this.userInfo);
             }).catch((res) => {
-                // cookies.remove('token');
+                cookies.remove('PHPSESSID');
                 this.userInfo = null;
-            })
+                // router.push('http://gis.beacukai.go.id:911/');
+                window.location.href = 'http://gis.beacukai.go.id:911/';
+            });
         },
         async userExit() {
-            // cookies.remove('token');
+            cookies.remove('PHPSESSID');
+            this.userInfo = null;
+            // router.push('http://gis.beacukai.go.id:911/');
+            window.location.href = 'http://gis.beacukai.go.id:911/';
+        },
+        async fetchUserDev() {
+            await axios.get("data/user.json", {
+            }).then((res) => {
+                this.userInfo = res.data;
+            }).catch((res) => {
+                this.userInfo = null;
+                router.push('/user-login');
+            })
+        },
+        async userExitDev() {
             this.userInfo = null;
             router.push('/user-login');
         }

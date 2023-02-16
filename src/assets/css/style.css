@@ -129,8 +129,8 @@ body {
 
 @media screen and (max-width: 1024px) {
     .p-32 {
-        padding-left: 32px;
-        padding-right: 32px;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
     }
 }
 
