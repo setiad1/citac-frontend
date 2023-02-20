@@ -33,19 +33,23 @@
         <div class="columns is-multiline">
             <div class="column is-half-tablet is-half-desktop is-one-third-widescreen">
                 <div class="is-size-5 has-text-weight-bold mb-4">Bar</div>
-                <div><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="bar" autoresize/></div>
+                <div ref="l1" class="is-relative"><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="bar" autoresize/></div>
             </div>
             <div class="column is-half-tablet is-half-desktop is-one-third-widescreen">
                 <div class="is-size-5 has-text-weight-bold mb-4">Line</div>
-                <div><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="line" autoresize/></div>
+                <div ref="l2" class="is-relative"><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="line" autoresize/></div>
             </div>
             <div class="column is-half-tablet is-half-desktop is-one-third-widescreen">
                 <div class="is-size-5 has-text-weight-bold mb-4">Pie</div>
-                <div><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="pie" autoresize/></div>
+                <div ref="l3" class="is-relative"><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="pie" autoresize/></div>
             </div>
             <div class="column is-half-tablet is-half-desktop is-one-third-widescreen">
                 <div class="is-size-5 has-text-weight-bold mb-4">Scatter</div>
-                <div><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="scatter" autoresize/></div>
+                <div ref="l4" class="is-relative"><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="scatter" autoresize/></div>
+            </div>
+            <div class="column is-half-tablet is-half-desktop is-one-third-widescreen">
+                <div class="is-size-5 has-text-weight-bold mb-4">Cadlestick</div>
+                <div ref="l5" class="is-relative"><v-chart class="chart border" style="width: 100%; min-height: 400px;" :option="cadlestick" autoresize/></div>
             </div>
         </div>
     </div>
@@ -54,7 +58,14 @@
 <script>
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
-import { PieChart, BarChart, LineChart, ScatterChart, EffectScatterChart } from "echarts/charts";
+import { 
+    PieChart, 
+    BarChart, 
+    LineChart, 
+    ScatterChart, 
+    EffectScatterChart,
+    CandlestickChart 
+} from "echarts/charts";
 import {
     VisualMapComponent,
     GridComponent,
@@ -76,6 +87,7 @@ use([
     PieChart,
     BarChart,
     LineChart,
+    CandlestickChart,
     TitleComponent,
     TooltipComponent,
     LegendComponent
@@ -335,6 +347,39 @@ export default {
                     }
                 ]
             },
+            cadlestick: {
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: { show: true },
+                        restore: { show: true },
+                        myTool1: {
+                            show: true,
+                            title: 'Save as CSV',
+                            icon: 'path fill="none" stroke="currentColor" d="M2.5 3.5v-2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-10a1 1 0 0 1-1-1v-2m0-6l4 4m-4 0l4-4m-5-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1Z"',
+                            onclick: function () {
+                                alert('Your custom tool handler here..')
+                            }
+                        },
+                        saveAsImage: { show: true }
+                    }
+                },
+                xAxis: {
+                    data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27']
+                },
+                yAxis: {},
+                series: [
+                    {
+                    type: 'candlestick',
+                    data: [
+                        [20, 34, 10, 38],
+                        [40, 35, 30, 50],
+                        [31, 38, 33, 44],
+                        [38, 15, 5, 42]
+                    ]
+                    }
+                ]
+            },
             items: []
         }
     },
@@ -348,8 +393,68 @@ export default {
         })
     },
     mounted() {
-        // console.log(vSelect)
+        let l1 = this.$loading.show({
+            container: this.$refs.l1,
+            height: 25,
+            width: 25,
+            opacity: 1,
+            loader: 'spinner',
+            color: 'black',
+            zIndex: 25,
+            backgroundColor: '#e8e8e8',
+        });
 
+        let l2 = this.$loading.show({
+            container: this.$refs.l2,
+            height: 25,
+            width: 25,
+            opacity: 1,
+            loader: 'spinner',
+            color: 'black',
+            zIndex: 25,
+            backgroundColor: '#e8e8e8',
+        });
+
+        let l3 = this.$loading.show({
+            container: this.$refs.l3,
+            height: 25,
+            width: 25,
+            opacity: 1,
+            loader: 'spinner',
+            color: 'black',
+            zIndex: 25,
+            backgroundColor: '#e8e8e8',
+        });
+
+        let l4 = this.$loading.show({
+            container: this.$refs.l4,
+            height: 25,
+            width: 25,
+            opacity: 1,
+            loader: 'spinner',
+            color: 'black',
+            zIndex: 25,
+            backgroundColor: '#e8e8e8',
+        });
+
+        let l5 = this.$loading.show({
+            container: this.$refs.l5,
+            height: 25,
+            width: 25,
+            opacity: 1,
+            loader: 'spinner',
+            color: 'black',
+            zIndex: 25,
+            backgroundColor: '#e8e8e8',
+        });
+
+        setTimeout(() => {
+            l1.hide();
+            l2.hide();
+            l3.hide();
+            l4.hide();
+            l5.hide();
+        }, 2000)
     }
 };
 </script>
@@ -364,7 +469,7 @@ export default {
 
 <style>
 .v-tahun {
-    width: 115px !important;
+    width: 121px !important;
 }
 .v-kantor {
     width: 300px !important;

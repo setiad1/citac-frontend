@@ -32,25 +32,19 @@
     },
     "2": {
         "show": true,
-        "label": "Tools",
-        "to": "/tools",
+        "label": "Documentation",
+        "to": "/doc",
         "children": {
             "0": {
                 "show": true,
-                "label": "Tool 101",
-                "to": "/tool-101",
+                "label": "Developer",
+                "to": "/doc-dev",
                 "children": {}
             },
             "1": {
                 "show": true,
-                "label": "Tool 102",
-                "to": "/tool-102",
-                "children": {}
-            },
-            "2": {
-                "show": true,
-                "label": "Tool 103",
-                "to": "/tool-103",
+                "label": "User",
+                "to": "/doc-user",
                 "children": {}
             }
         }

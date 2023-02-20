@@ -1,5 +1,5 @@
 <template>
-    <div id="main" class="container is-fluid mt-5 p-32">
+    <div ref="main" id="main" class="container is-fluid mt-5 p-32">
       <h1>Tool 101</h1>
       <!-- <span>{{ store.userInfo }}</span> -->
     </div>
@@ -9,10 +9,19 @@
   export default {
     name: 'Tool101View',
     mounted() {
-      // let loader = this.$loading.show({});
+      // let loader = this.$loading.show({
+      //   container: this.$refs.main,
+      //   height: 25,
+      //   width: 25,
+      //   opacity: 1,
+      //   loader: 'spinner',
+      //   color: 'black',
+      //   // zIndex: 25,
+      //   // backgroundColor: '#e8e8e8',
+      // });
       // setTimeout(() => {
       //     loader.hide()
-      // }, 1000)
+      // }, 2000)
     }
   }
   </script>

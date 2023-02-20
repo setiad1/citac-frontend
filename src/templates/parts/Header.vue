@@ -24,7 +24,7 @@
                                     <div class="navbar-link">{{ item.label }}</div>
                                     <div class="navbar-dropdown">
                                         <template v-for="(i, x) in item.children" :key="x">
-                                            <router-link :to="i.to" class="navbar-item">{{ i.label }}</router-link>
+                                            <router-link :to="i.to" class="navbar-item" v-on:click="smClicked($event)">{{ i.label }}</router-link>
                                         </template>
                                     </div>
                                 </div>
@@ -97,6 +97,9 @@ export default {
         userExit: async function () {
             await this.store.userExitDev();
             // await this.store.userExit();
+        },
+        smClicked: function(e) {
+            console.log(this.$event);
         }
     },
     components: { Sidebar }

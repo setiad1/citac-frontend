@@ -33,6 +33,24 @@ const routes = [
         name: 'Tool 103',
         meta: { layout: First },
         component: () => import('../views/Tool103View.vue')
+    },
+    {
+        path: '/doc',
+        name: 'Doc',
+        meta: { layout: First },
+        component: () => import('../views/DocDevView.vue')
+    },
+    {
+        path: '/doc-dev',
+        name: 'Docdev',
+        meta: { layout: First },
+        component: () => import('../views/DocDevView.vue')
+    },
+    {
+        path: '/doc-user',
+        name: 'Docuser',
+        meta: { layout: First },
+        component: () => import('../views/DocUserView.vue')
     }
 ]
 

@@ -20,11 +20,17 @@
                     </template>
                     <template v-else>
                         <li>
-                            <a class="menu-has-sub has-text-grey-lighter" v-on:click="Tes($event)">
+                            <a class="menu-has-sub has-text-grey-lighter" ref="sl" :sl="index" v-on:click="Tes($event, index)">
                                 <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> {{ item.label }} 
                                 <span class="is-pulled-right" style="line-height: 30px;">
                                     <i class="fa-solid fa-angle-right hidex"></i>
                                     <i class="fa-solid fa-angle-down showx"></i>
+                                    <!-- <template v-if="!slshow">
+                                        <i class="fa-solid fa-angle-right hidex"></i>
+                                    </template>
+                                    <template v-else>
+                                        <i class="fa-solid fa-angle-down showx"></i>
+                                    </template> -->
                                 </span>
                             </a>
                             <ul class="menu-has-sub-list">
@@ -39,38 +45,6 @@
                         </li>
                     </template>
                 </template>
-                
-                <!-- <li>
-                    <a href="documentation.php" class="has-text-grey-lighter">
-                        <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> Documentation
-                    </a>
-                </li> -->
-                <!-- <li>
-                    <a class="menu-has-sub has-text-grey-lighter">
-                        <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> User 
-                        <span class="is-pulled-right" style="line-height: 30px;">
-                            <i class="fa-solid fa-angle-right hidex"></i>
-                            <i class="fa-solid fa-angle-down showx"></i>
-                        </span>
-                    </a>
-                    <ul class="menu-has-sub-list">
-                        <li class="p-1">
-                            <a href="list.php" class="p-0 has-text-grey-light">
-                                <i class="fa-solid fa-check"></i> List
-                            </a>
-                        </li>
-                        <li class="p-1">
-                            <a href="daftar.php" class="p-0 has-text-grey-light">
-                                <i class="fa-solid fa-check"></i> Daftar
-                            </a>
-                        </li>
-                        <li class="p-1">
-                            <a class="p-0 has-text-grey-light">
-                                <i class="fa-solid fa-check"></i> Lainnya
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
             </ul>
         </aside>
     </div>
@@ -83,7 +57,9 @@ export default {
     data() {
         return {
             menus: {},
-            clickCount: 0
+            clickCount: 0,
+            slshow: false,
+            slindex: null
         }
     },
     mounted() {
@@ -133,31 +109,39 @@ export default {
         fetchMenus: function() {
             this.axios.get("data/menu.json", {
             }).then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.menus = res.data;
             }).catch((res) => {
                 console.log(res.data);
             });
         },
-        Tes: function(e) {
+        Tes: async function(e, i) {
             var el = e.target;
-            console.log(el.index);
+            if (this.slindex) {
+                if (this.slindex !== i) {
+                    let psl = this.$refs.sl[this.slindex-1];
+                    psl.nextSibling.style.display = 'none';
+                    psl.children[1].children[0].style.display = "block";
+                    psl.children[1].children[1].style.display = "none";
+                    this.clickCount = 0;
+                } 
+            }
+            this.slindex = i;
             function isOdd(num) { return num % 2; }
             this.clickCount += 1;
-            console.log(this.clickCount);
             if (isOdd(this.clickCount)) {
-                el.nextElementSibling.style.display = "block";
-                el.nextElementSibling.style.visibility = "visible";
-                el.nextElementSibling.style.opacity = "1";
-                el.lastElementChild.children[0].style.display = "none";
-                el.lastElementChild.children[1].style.display = "block";
+                this.slshow = true;
+                e.target.nextSibling.style.display = 'block';
+                e.target.children[1].children[0].style.display = "none";
+                e.target.children[1].children[1].style.display = "block";
+                // console.log('odd: ' + this.clickCount);
             }
             else {
-                el.nextElementSibling.style.opacity = "0";
-                el.nextElementSibling.style.display = "none";
-                el.nextElementSibling.style.visibility = "hidden";
-                el.lastElementChild.children[0].style.display = "block";
-                el.lastElementChild.children[1].style.display = "none";
+                this.slshow = false;
+                e.target.nextSibling.style.display = 'none';
+                e.target.children[1].children[0].style.display = "block";
+                e.target.children[1].children[1].style.display = "none";
+                // console.log('even: ' + this.clickCount);
             }
         }
     }

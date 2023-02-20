@@ -1,13 +1,13 @@
 <template>
     <div ref="main" id="main" class="container is-fluid mt-5 p-32">
-      <h1>Tool 102</h1>
+      <h1>User</h1>
       <!-- <span>{{ store.userInfo }}</span> -->
     </div>
   </template>
   
   <script>
   export default {
-    name: 'Tool102View',
+    name: 'DocUserView',
     mounted() {
       // let loader = this.$loading.show({
       //   container: this.$refs.main,
