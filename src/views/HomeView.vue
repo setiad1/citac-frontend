@@ -1,12 +1,19 @@
 <template>
     <div id="main" class="container is-fluid mt-5 p-32">
+        <div class="mb-6 is-size-6">
+            <span class="pb-2" style="border-bottom: 1px solid hsl(0deg 0% 86%);">
+                <span class="is-clickable has-text-danger"><i class="fa-solid fa-arrow-left"></i>&nbsp; Back</span> &nbsp;
+                <i class="fa-solid fa-pipe"></i>&nbsp; 
+                Home
+            </span>
+        </div>
         <div class="columns is-multiline">
             <!-- <div class="column is-full">
                 <h1 class="title">Title</h1>
                 <h2 class="subtitle">Subtitle</h2>
             </div> -->
             <div class="column is-full is-hidden-touch">
-                <div class="field has-addons has-addons-centered">
+                <div class="field has-addons has-addons-left">
                     <p class="control">
                         <v-select class="v-tahun" v-model="s_tahun" :options="['2023','2022','2021']"></v-select>
                     </p>

@@ -1,28 +1,34 @@
 <template>
-    <div ref="main" id="main" class="container is-fluid mt-5 p-32">
-      <h1>Developer</h1>
-      <!-- <span>{{ store.userInfo }}</span> -->
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'DocDevView',
-    mounted() {
-      // let loader = this.$loading.show({
-      //   container: this.$refs.main,
-      //   height: 25,
-      //   width: 25,
-      //   opacity: 1,
-      //   loader: 'spinner',
-      //   color: 'black',
-      //   // zIndex: 25,
-      //   // backgroundColor: '#e8e8e8',
-      // });
-      // setTimeout(() => {
-      //     loader.hide()
-      // }, 2000)
+  <div ref="main" id="main" class="container is-fluid mt-5 p-32">
+    <page-header></page-header>
+    <loading v-model:active="isLoading"
+      :can-cancel="false"
+      :background-color="'white'"
+      :opacity="1"
+      :z-index="25"
+      :is-full-page="fullPage"/>
+  </div>
+</template>
+
+<script>
+import Loading from "vue-loading-overlay";
+
+export default {
+  name: 'DocDevView',
+  components: {
+    Loading
+  },
+  data() {
+    return {
+      isLoading: true,
+      fullPage: false
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000)
   }
-  </script>
+}
+</script>
   

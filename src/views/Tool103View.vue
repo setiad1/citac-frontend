@@ -1,6 +1,6 @@
 <template>
     <div ref="main" id="main" class="container is-fluid mt-5 p-32">
-      <h1>Tool 103</h1>
+      <page-header></page-header>
       <!-- <span>{{ store.userInfo }}</span> -->
     </div>
   </template>

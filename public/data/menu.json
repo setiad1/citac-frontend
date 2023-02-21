@@ -48,5 +48,11 @@
                 "children": {}
             }
         }
+    },
+    "3": {
+        "show": true,
+        "label": "Users",
+        "to": "/users-list",
+        "children": {}
     }
 }
