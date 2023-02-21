@@ -8,7 +8,12 @@
             :opacity="1"
             :z-index="25"
             :loader="'spinner'"
-            :is-full-page="fullPage"/>
+            :is-full-page="fullPage">
+                <template v-slot="before">
+                    <img src="loaders/pica.gif" style="width: 65px" />
+                </template>
+            </loading>
+
             <template v-for="(i, index) in users" :key="index">
                 <li v-show="!isLoading" style="list-style: none;">{{ (page * pageSize) - pageSize + index+1 }} ~ {{ i.name }} ({{ i.trips }})</li>
             </template>
@@ -85,3 +90,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.vl-overlay {
+    justify-content: left !important;
+}
+</style>
