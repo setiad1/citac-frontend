@@ -127,6 +127,24 @@ body {
 
 /* End */
 
+
+/* Vue Select */
+
+::placeholder {
+    color: rgb(172, 170, 170) !important;
+}
+.vs__search, .vs__search:focus {
+    padding: 0.17em 0.5em !important;
+}
+.vs__selected {
+    padding: 0 0.3em !important;
+}
+.vs__dropdown-menu li {
+    padding-left: 0.55em !important;
+}
+
+/* End */
+
 @media screen and (max-width: 1024px) {
     .p-32 {
         padding-left: 15px !important;

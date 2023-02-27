@@ -107,13 +107,14 @@ export default {
     },
     methods: {
         fetchMenus: function() {
-            this.axios.get("data/menu.json", {
-            }).then((res) => {
-                // console.log(res.data);
-                this.menus = res.data;
-            }).catch((res) => {
-                console.log(res.data);
-            });
+            this.menus = require('@/data/menu.json');
+            // this.axios.get("data/menu.json", {
+            // }).then((res) => {
+            //     // console.log(res.data);
+            //     this.menus = res.data;
+            // }).catch((res) => {
+            //     console.log(res.data);
+            // });
         },
         Tes: async function(e, i) {
             var el = e.target;

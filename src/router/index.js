@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import Login from '@/templates/Login.vue'
 import First from '@/templates/First.vue'
 import { authStore } from '@/stores/auth'
@@ -61,13 +61,19 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+//   history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes
 })
 
 router.beforeEach(async to => {
     const store = authStore();
-    store.fetchUserDev();
+    if (process.env.NODE_ENV === 'production') {
+        store.fetchUser();
+    } else {
+        store.fetchUserDev();
+    }
+    // store.fetchUserDev();
     // store.fetchUser();
 
 

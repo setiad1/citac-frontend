@@ -78,24 +78,30 @@ export default {
         };
     },
     mounted() {
-        this.axios.get("data/menu.json", {
-        }).then((res) => {
-            this.menus = res.data;
-            // for (var i in this.menus) {
-            //     console.log(this.menus[i]);
-            //     if (Object.keys(this.menus[i].children).length !== 0) {
-            //         for (var j in this.menus[i].children) {
-            //             console.log(this.menus[i].children[j].label);
-            //         }
-            //     }
-            // }
-        }).catch((res) => {
-            console.log(res.data);
-        });
+        this.menus = require('@/data/menu.json');
+        // this.axios.get("data/menu.json", {
+        // }).then((res) => {
+        //     this.menus = res.data;
+        //     // for (var i in this.menus) {
+        //     //     console.log(this.menus[i]);
+        //     //     if (Object.keys(this.menus[i].children).length !== 0) {
+        //     //         for (var j in this.menus[i].children) {
+        //     //             console.log(this.menus[i].children[j].label);
+        //     //         }
+        //     //     }
+        //     // }
+        // }).catch((res) => {
+        //     console.log(res.data);
+        // });
     },
     methods: {
         userExit: async function () {
-            await this.store.userExitDev();
+            if (process.env.NODE_ENV === 'production') {
+                await this.store.userExit();
+            } else {
+                await this.store.userExitDev();
+            }
+            // await this.store.userExitDev();
             // await this.store.userExit();
         },
         smClicked: function(e) {
