@@ -87,7 +87,7 @@ export default {
       s_tahun_options: ['2021','2022','2023'],
       s_kantor: null,
       s_kantor_options: [],
-      s_pelabuhan_utama: [{nama_kantor: 'Pelabuhan Utama', kd_kantor: '040300,060100,070100'}],
+      s_pelabuhan_utama: [{nama_kantor: "PELABUHAN UTAMA", kd_kantor: '040300,060100,070100'}],
       line: {
         legend: {show: true},
         xAxis: {
@@ -130,7 +130,8 @@ export default {
           q: s
         }
       }).then((res) => {
-        res.data = res.data.concat(this.s_pelabuhan_utama);
+        // res.data = res.data.concat(this.s_pelabuhan_utama);
+        res.data = this.s_pelabuhan_utama.concat(res.data);
         this.s_kantor_options = res.data;
       })
     },
