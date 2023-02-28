@@ -319,7 +319,7 @@ export default {
                this.isLoading = false;
                this.c_teus_bulanan.series = res.data.map(e => ({
                   name: e.name,
-                  data: e.data.map(e => [['Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
+                  data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
                   type: 'line',
                }));
             }, 1000)
