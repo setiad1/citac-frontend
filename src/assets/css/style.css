@@ -129,7 +129,13 @@ body {
 
 
 /* Vue Select */
-
+.v-selectx {
+    display: inline-block;
+}
+.v-selectx .vs__dropdown-menu {
+    min-width: auto !important;
+    overflow-x: hidden;
+}
 ::placeholder {
     color: rgb(172, 170, 170) !important;
 }
@@ -155,6 +161,9 @@ body {
 @media screen and (max-width: 768px) {
     .navbar-brand .navbar-item, .navbar-tabs .navbar-item {
         /* padding: 0; */
+    } 
+    .mt-2-tablet {
+        margin-top: 10px !important;
     }
 }
 
@@ -162,4 +171,5 @@ body {
     .sidenav {
         width: 0 !important;
     }
+    
 }

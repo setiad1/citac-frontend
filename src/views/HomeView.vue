@@ -475,7 +475,7 @@ export default {
 </style>
 
 <style>
-.v-tahun {
+/* .v-tahun {
     width: 121px !important;
 }
 .v-kantor {
@@ -506,7 +506,7 @@ export default {
 }
 .vs__dropdown-menu li {
     padding-left: 0.55em !important;
-}
+} */
 /* .vs__no-options {
     text-align: left !important;
     padding-left: 8px !important;
