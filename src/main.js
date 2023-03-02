@@ -12,12 +12,19 @@ import 'vue-loading-overlay/dist/css/index.css';
 import PageHeader from "@/components/PageHeader";
 import {Tabs, Tab} from 'vue3-tabs-component';
 
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+
 const pinia = createPinia()
 const app = createApp(App)
 app.use(pinia)
 app.use(router)
 
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL_API
+const toastificationOptions = {
+   // You can set your default options here
+};
+app.use(Toast, toastificationOptions);
 app.use(VueAxios, axios)
 app.use(VueCookies, { expires: '1d'})
 app.use(LoadingPlugin)

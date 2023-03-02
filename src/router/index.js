@@ -29,6 +29,13 @@ const routes = [
         component: () => import('../views/Tool102View.vue')
     },
     {
+        path: '/blokir',
+        name: 'Blokir',
+        meta: { layout: First, 'name': 'BLOKIR' },
+        component: () => import('../views/BlokirView.vue')
+    },
+    // di bawah tidak ditampilkan
+    {
         path: '/doc',
         name: 'Doc',
         meta: { layout: First, 'name': 'Documentation' },

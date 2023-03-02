@@ -2,7 +2,7 @@
    <div ref="main" id="main" class="container is-fluid mt-5 p-32">
          <page-header class="is-inline-block"></page-header>
          <div class="is-pulled-right">
-            <button class="button is-small is-success mb-4" data-show="quickview" data-target="quickviewDefault">
+            <button class="button is-small is-info mb-4" data-show="quickview" data-target="quickviewDefault">
                <span class="icon">
                   <i class="fa-regular fa-filter-list"></i>
                </span>
@@ -361,7 +361,7 @@
             </div>
          </div>
 
-         <hr>
+         <div class="is-divider p-0 m-0 mb-5" data-content="|"></div>
 
          <div class="columns is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd">
             <!-- 25 Komoditi Terbesar -->
@@ -700,7 +700,7 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr v-for="(d, i) in topNegaraAsal.by_dok" :key="i">
+                                       <tr v-for="(d, i) in summaryByDok" :key="i">
                                           <td style="word-wrap: break-word; white-space: pre-wrap;">{{ d[0] }}</td>
                                           <td class="is-pull-right has-text-right">{{ toIDR(d[1]) }}</td>
                                        </tr>
@@ -708,7 +708,7 @@
                                  </table>
                               </div>
                            </tab>
-                           <tab id="top-teus" name="Jml. Teus">
+                           <tab id="top-teus" name="By/Bruto">
                               <div class="mt-1">
                                  <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                     <thead>
@@ -718,7 +718,7 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr v-for="(d, i) in topNegaraAsal.by_teus" :key="i">
+                                       <tr v-for="(d, i) in summaryByAvgBayarPerBruto" :key="i">
                                           <td style="word-wrap: break-word; white-space: pre-wrap;">{{ d[0] }}</td>
                                           <td class="is-pull-right has-text-right">{{ toIDR(d[1]) }}</td>
                                        </tr>
@@ -726,7 +726,7 @@
                                  </table>
                               </div>
                            </tab>
-                           <tab id="top-netto" name="Jml. Netto">
+                           <tab id="top-netto" name="By/Teus">
                               <div class="mt-1">
                                  <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                     <thead>
@@ -736,7 +736,7 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr v-for="(d, i) in topNegaraAsal.by_netto" :key="i">
+                                       <tr v-for="(d, i) in summaryByAvgBayarPerTeus" :key="i">
                                           <td style="word-wrap: break-word; white-space: pre-wrap;">{{ d[0] }}</td>
                                           <td class="is-pull-right has-text-right">{{ toIDR(d[1]) }}</td>
                                        </tr>
@@ -744,7 +744,7 @@
                                  </table>
                               </div>
                            </tab>
-                           <tab id="top-nilai" name="Jml. Nilai">
+                           <tab id="top-nilai" name="NP/Teus">
                               <div class="mt-1">
                                  <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                     <thead>
@@ -754,7 +754,7 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <tr v-for="(d, i) in topNegaraAsal.by_nilai" :key="i">
+                                       <tr v-for="(d, i) in summaryByAvgNilaiPerTeus" :key="i">
                                           <td style="word-wrap: break-word; white-space: pre-wrap;">{{ d[0] }}</td>
                                           <td class="is-pull-right has-text-right">{{ toIDR(d[1]) }}</td>
                                        </tr>
@@ -1668,8 +1668,16 @@ export default {
       },
       imporSummary: function() {
          var number = 25;
-         this.axios.get(`/chart/impor/summary/${number}`).then((res) => {
-            // console.log(res.data);
+         this.axios.get(`/chart/impor/summary/${number}`, {
+            params: {
+               from: this.from,
+               to: this.to
+            }
+         }).then((res) => {
+            this.summaryByDok = res.data.by_dok;
+            this.summaryByAvgNilaiPerTeus = res.data.by_avg_nilai_per_teus;
+            this.summaryByAvgBayarPerTeus = res.data.by_avg_bayar_per_teus;
+            this.summaryByAvgBayarPerBruto = res.data.by_avg_bayar_per_bruto;
          })
       }
    }
@@ -1679,6 +1687,7 @@ export default {
 <style scoped>
 @import "vue-select/dist/vue-select.css";
 @import "bulma-extensions/bulma-quickview/dist/css/bulma-quickview.min.css";
+@import "bulma-extensions/bulma-divider/dist/css/bulma-divider.min.css";
 .chart {
    width: 100%;
    min-height: 400px;

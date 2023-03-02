@@ -1,5 +1,5 @@
 {
-    "1": {
+    "0": {
         "show": true,
         "label": "Komoditi",
         "to": "/komoditi",
@@ -17,5 +17,11 @@
                 "children": {}
             }
         }
+    },
+    "1": {
+        "show": true,
+        "label": "Blokir",
+        "to": "/blokir",
+        "children": {}
     }
 }
