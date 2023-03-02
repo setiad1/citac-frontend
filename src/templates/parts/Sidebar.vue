@@ -10,6 +10,11 @@
                 </span>
             </div>
             <ul class="menu-list">
+                <li>
+                    <a href="http://gis.beacukai.go.id:911/" class="has-text-grey-lighter">
+                        <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> CITAC
+                    </a>
+                </li>
                 <template v-for="(item, index) in menus" :key="index">
                     <template v-if="Object.keys(item.children).length === 0">
                         <li>

@@ -4,7 +4,7 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <router-link class="navbar-item" to="/">
-                        <img alt="Logo" src="../../assets/images/add-512.png" height="28">
+                        <img alt="Logo" src="../../assets/images/citac.png" height="28">
                     </router-link>
                     <a role="button" data="1" id="nav1" class="navix navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         <span aria-hidden="true"></span>
@@ -15,6 +15,7 @@
                 
                 <div class="navbar-menu">
                     <div class="navbar-start">
+                        <a href="http://gis.beacukai.go.id:911/" class="navbar-item has-text-dark-ter has-text-weight-bold" >CITAC</a>
                         <template v-for="(item, index) in menus" :key="index">
                             <template v-if="Object.keys(item.children).length === 0">
                                 <router-link class="navbar-item"  :to="item.to">{{ item.label }}</router-link>

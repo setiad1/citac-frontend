@@ -13,26 +13,20 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        meta: { layout: First, 'name': 'Home' },
-        component: () => import('../views/HomeView.vue')
-    },
-    {
-        path: '/tool-101',
-        name: 'Tool 101',
-        meta: { layout: First, 'name': 'Tool 101' },
+        meta: { layout: First, 'name': 'KOMODITI IMPOR' },
         component: () => import('../views/Tool101View.vue')
     },
     {
-        path: '/tool-102',
-        name: 'Tool 102',
-        meta: { layout: First, 'name': 'Tool 102' },
-        component: () => import('../views/Tool102View.vue')
+        path: '/komoditi-impor',
+        name: 'Komoditi Impor',
+        meta: { layout: First, 'name': 'KOMODITI IMPOR' },
+        component: () => import('../views/Tool101View.vue')
     },
     {
-        path: '/tool-103',
-        name: 'Tool 103',
-        meta: { layout: First, 'name': 'Tool 103' },
-        component: () => import('../views/Tool103View.vue')
+        path: '/komoditi-ekspor',
+        name: 'Komoditi Ekspor',
+        meta: { layout: First, 'name': 'KOMODITI EKSPOR' },
+        component: () => import('../views/Tool102View.vue')
     },
     {
         path: '/doc',
