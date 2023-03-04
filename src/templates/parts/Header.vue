@@ -15,7 +15,6 @@
                 
                 <div class="navbar-menu">
                     <div class="navbar-start">
-                        <a href="http://gis.beacukai.go.id:911/" class="navbar-item has-text-dark-ter has-text-weight-bold" >CITAC</a>
                         <template v-for="(item, index) in menus" :key="index">
                             <template v-if="Object.keys(item.children).length === 0">
                                 <router-link class="navbar-item"  :to="item.to">{{ item.label }}</router-link>
@@ -31,16 +30,11 @@
                                 </div>
                             </template>
                         </template>
-                        <!-- <router-link class="navbar-item" to="/">Home</router-link>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <div class="navbar-link">Tools</div>
-                            <div class="navbar-dropdown">
-                                <router-link to="/dashboard-100" class="navbar-item">Tools 100</router-link>
-                                <router-link to="/dashboard-101" class="navbar-item">Tools 101</router-link>
-                                <hr class="navbar-divider">
-                                <router-link to="#" class="navbar-item has-text-danger">Peta Wilayah Indonesia</router-link>
-                            </div>
-                        </div> -->
+                        <a 
+                            href="../" 
+                            class="navbar-item has-text-success has-text-weight-bold is-size-7">
+                            <i class="fa-light fa-up-right-from-square"></i>&nbsp;&nbsp;CITAC
+                        </a>
                     </div>
                     
                     <div class="navbar-end">

@@ -2,6 +2,15 @@
    <div ref="main" id="main" class="container is-fluid mt-5 p-32">
       <page-header class="is-inline-block"></page-header>
       <div class="is-pulled-right">
+         <!-- <download-csv class="button is-small is-dark mr-1"
+            :separator-excel="true"
+            :data= "data_blokir">
+            <span class="icon">
+               <i class="fa-thin fa-file-spreadsheet"></i>
+            </span>
+            <span>to CSV</span>
+         </download-csv> -->
+
          <button class="button is-small is-danger is-outlined mr-1" v-on:click="refresh($event)">
             <span class="icon">
                <i class="fa-solid fa-glass-citrus"></i>
@@ -27,13 +36,13 @@
             <div class="quickview-block">
                <div class="columns is-multiline m-0">
                   <div class="column pb-0 is-full">
-                     <input 
+                     <v-select id="npwp9" v-model="npwp9" placeholder="NPWP 9 DIGIT, PISAH KOMA KALAU BANYAK" ref="npwp9" taggable multiple />
+                     <!-- <input 
                         class="input" 
                         v-model="npwp9" 
                         type="text" 
-                        placeholder="NPWP 9 DIGIT" 
-                        maxlength="9" 
-                        ref="npwp9">
+                        placeholder="NPWP 9 DIGIT, PISAH KOMA KALAU BANYAK" 
+                        ref="npwp9"> -->
                   </div>
                   <div class="column pb-0 is-full">
                      <input class="input" v-model="nama" type="text" placeholder="NAMA PERUSAHAAN" ref="nama">
@@ -125,6 +134,7 @@
                </table>
             </div>
          </div>
+         <div v-show="false" class="column is-half-widescreen is-half-fullhd"></div>
       </div>
    </div>
 </template>
@@ -140,19 +150,7 @@ import { useToast } from "vue-toastification";
 export default {
    name: "BlokirView",
    setup() {
-      // Get toast interface
       const toast = useToast();
-
-      // Use it!
-      // toast("I'm a toast!");
-
-      // or with options
-      // toast.success("My toast content", {
-      //    timeout: 2000
-      // });
-      // These options will override the options defined in the "app.use" plugin registration for this specific toast
-
-      // Make it available inside methods
       return { toast }
    },
    components: {
@@ -169,7 +167,7 @@ export default {
          disops: {
             's_kantor': false
          },
-         npwp9: null,
+         npwp9: [],
          nama: null,
          s_kantor: null,
          s_kantor_options: [],
@@ -196,7 +194,7 @@ export default {
       refresh: function() {
          this.isLoading = true;
          setTimeout(() => {
-            this.npwp9 = null
+            this.npwp9 = []
             this.nama = null;
             this.s_kantor = null;
             this.s_kantor_options = [];
@@ -210,7 +208,7 @@ export default {
          this.isLoading = true;
          this.axios.get("/blokir", {
             params: {
-               npwp9: this.npwp9,
+               npwp9: this.npwp9.join(','),
                kd_kantor: this.s_kantor,
                nama: this.nama
             }
@@ -237,33 +235,51 @@ export default {
       },
       cariBlokir: function(e) {
          var n1 = this.$refs.nama;
-         var n2 = this.$refs.npwp9;
-         if (this.npwp9 && this.npwp9.length === 9) {
+         // var n2 = this.$refs.npwp9;
+         var n2 = document.getElementById("npwp9").firstElementChild;
+         var isNine = false;
+         var isNotEmpty = false;
+         if (this.npwp9.length === 0) {
+            isNotEmpty = false;
+         } else {
+            isNotEmpty = true;
+            this.npwp9.forEach((e) => {
+               if (e.length >= 9) {
+                  isNine = true;
+               }
+            });
+         }
+         if (isNotEmpty && isNine) {
             n1.classList.remove("is-danger");
-            n2.classList.remove("is-danger");
+            // n2.classList.remove("is-danger");
+            n2.style.border = "1px solid gray";
             this.blokir();
          } else if (this.nama && this.nama.length >= 3) {
             n1.classList.remove("is-danger");
-            n2.classList.remove("is-danger");
+            // n2.classList.remove("is-danger");
+            n2.style.border = "1px solid gray";
             this.blokir();
          } else {
-            if (this.nama || this.npwp9) {
+            if (this.nama || isNotEmpty) {
                if (this.nama && this.nama.length < 3) {
                   n1.classList.add("is-danger");
                   this.toast.error("MINIMAL 3 KARAKTER NAMA PERUSAHAAN");
                }
-               if (this.npwp9 && this.npwp9.length !== 9) {
-                  n2.classList.add("is-danger");
+               if (isNotEmpty && !isNine) {
+                  // n2.classList.add("is-danger");
+                  n2.style.border = "1px solid hsl(348deg, 86%, 61%)";
                   this.toast.error("HARUS NPWP 9 DIGIT");
                }
-               if (this.nama && this.nama.length >= 3 && this.npwp9 && this.npwp9.length === 9) {
+               if (this.nama && this.nama.length >= 3 && isNotEmpty && isNine) {
                   n1.classList.remove("is-danger");
-                  n2.classList.remove("is-danger");
+                  // n2.classList.remove("is-danger");
+                  n2.style.border = "1px solid gray";
                   this.blokir();
                }
             } else {
                n1.classList.add("is-danger");
-               n2.classList.add("is-danger");
+               // n2.classList.add("is-danger");
+               n2.style.border = "1px solid hsl(348deg, 86%, 61%)";
                this.toast.error("NPWP DAN/ATAU NAMA HARUS ADA");
             }
          }

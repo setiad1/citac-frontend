@@ -7,7 +7,7 @@
   
   <script>
   export default {
-    name: 'Tool102View',
+    name: 'KomEksporView',
     mounted() {
       // let loader = this.$loading.show({
       //   container: this.$refs.main,

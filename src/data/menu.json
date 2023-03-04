@@ -1,6 +1,12 @@
 {
     "0": {
         "show": true,
+        "label": "Home",
+        "to": "/",
+        "children": {}
+    },
+    "1": {
+        "show": true,
         "label": "Komoditi",
         "to": "/komoditi",
         "children": {
@@ -18,7 +24,7 @@
             }
         }
     },
-    "1": {
+    "2": {
         "show": true,
         "label": "Blokir",
         "to": "/blokir",

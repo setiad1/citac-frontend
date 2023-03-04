@@ -13,20 +13,20 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        meta: { layout: First, 'name': 'KOMODITI IMPOR' },
-        component: () => import('../views/Tool101View.vue')
+        meta: { layout: First, 'name': 'Home' },
+        component: () => import('../views/Home.vue')
     },
     {
         path: '/komoditi-impor',
         name: 'Komoditi Impor',
         meta: { layout: First, 'name': 'KOMODITI IMPOR' },
-        component: () => import('../views/Tool101View.vue')
+        component: () => import('../views/KomImporView.vue')
     },
     {
         path: '/komoditi-ekspor',
         name: 'Komoditi Ekspor',
         meta: { layout: First, 'name': 'KOMODITI EKSPOR' },
-        component: () => import('../views/Tool102View.vue')
+        component: () => import('../views/KomEksporView.vue')
     },
     {
         path: '/blokir',

@@ -11,7 +11,7 @@
             </div>
             <ul class="menu-list">
                 <li>
-                    <a href="http://gis.beacukai.go.id:911/" class="has-text-grey-lighter">
+                    <a href="../" class="has-text-grey-lighter">
                         <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> CITAC
                     </a>
                 </li>
