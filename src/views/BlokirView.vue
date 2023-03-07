@@ -27,7 +27,7 @@
       </div>
 
       <div id="quickviewDefault" class="quickview">
-         <header class="quickview-header">
+         <header class="quickview-header is-dark" style="border-bottom: 1px solid #363636 !important;">
             <p class="title"><i class="fa-regular fa-filter-list"></i></p>
             <span class="delete" data-dismiss="quickview"></span>
          </header>

@@ -1,7 +1,7 @@
 <template>
     <div id="header">
-        <div class="container is-fluid p-32">
-            <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container has-background-dark is-fluid is-dark p-32">
+            <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <router-link class="navbar-item" to="/">
                         <img alt="Logo" src="../../assets/images/citac.png" height="28">
@@ -33,7 +33,7 @@
                         <a 
                             href="../" 
                             class="navbar-item has-text-success has-text-weight-bold is-size-7">
-                            <i class="fa-light fa-up-right-from-square"></i>&nbsp;&nbsp;CITAC
+                            CITAC&nbsp;&nbsp;<i class="fa-light fa-up-right-from-square"></i>
                         </a>
                     </div>
                     

@@ -3,18 +3,13 @@
         <aside class="menu">
             <div class="menu-label-top">
                 <a href="/" class="has-text-grey-light">
-                    <img src="add-512.png" height="28" width="17">
+                    <img src="../../assets/images/citac.png" height="28" width="25" style="position: absolute;">
                 </a>
                 <span role="button" data="2" id="nav2" class="navix closebtn has-text-grey-light">
                     <i class="fa-thin fa-xmark"></i>
                 </span>
             </div>
             <ul class="menu-list">
-                <li>
-                    <a href="../" class="has-text-grey-lighter">
-                        <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> CITAC
-                    </a>
-                </li>
                 <template v-for="(item, index) in menus" :key="index">
                     <template v-if="Object.keys(item.children).length === 0">
                         <li>
@@ -50,6 +45,11 @@
                         </li>
                     </template>
                 </template>
+                <li>
+                    <a href="../" class="has-text-grey-lighter">
+                        <i class="fa-light fa-map-pin icon-menu-parent fa-rotate-270"></i> CITAC &nbsp;<i class="fa-light fa-up-right-from-square is-size-7"></i>
+                    </a>
+                </li>
             </ul>
         </aside>
     </div>

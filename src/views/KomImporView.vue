@@ -12,7 +12,7 @@
 
          <!-- QUickview -->
          <div id="quickviewDefault" class="quickview">
-            <header class="quickview-header">
+            <header class="quickview-header is-dark">
                <p class="title"><i class="fa-regular fa-filter-list"></i></p>
                <span class="delete" data-dismiss="quickview"></span>
             </header>
@@ -134,12 +134,8 @@
             <footer class="quickview-footer"></footer>
          </div>
 
-         <div class="columns is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd">
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
-               <!-- <div class="is-size-5 has-text-weight-bold mb-4">
-                  Netto
-                  <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Netto</span>
-               </div> -->
+         <div class="columns is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd mt-1">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <div class="is-relative">
                   <loading class="loading" v-model:active="isLoading"
                   :can-cancel="false"
@@ -163,7 +159,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Total Bayar Per Netto
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Total bayar per netto</span>
@@ -191,7 +187,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Average Bayar Per Netto
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Average bayar per netto</span>
@@ -219,7 +215,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Average BM Per Netto
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Average BM per netto</span>
@@ -247,7 +243,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Teus
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Teus bulanan</span>
@@ -275,7 +271,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Total Bayar Per Teus
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Total bayar per teus</span>
@@ -303,7 +299,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Average Bayar Per Teus
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Average bayar per teus</span>
@@ -331,7 +327,7 @@
                   </div>
                </div>
             </div>
-            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen">
+            <div class="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen pb-1 pt-1">
                <!-- <div class="is-size-5 has-text-weight-bold mb-4">
                   Average BM Per Teus
                   <span class="is-size-6 has-text-weight-normal has-text-grey-darker is-block">Average BM per teus</span>
@@ -361,7 +357,7 @@
             </div>
          </div>
 
-         <div class="is-divider p-0 m-0 mb-5" data-content="|"></div>
+         <div class="is-divider p-0 m-0 mb-4" data-content="|"></div>
 
          <div class="columns is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd">
             <!-- 25 Komoditi Terbesar -->
@@ -779,7 +775,7 @@ import bulmaQuickview from "bulma-extensions/bulma-quickview/dist/js/bulma-quick
 import Loading from "vue-loading-overlay";
 import vSelect from "vue-select";
 import { use } from "echarts/core";
-import { CanvasRenderer } from "echarts/renderers";
+import { CanvasRenderer, SVGRenderer } from "echarts/renderers";
 import { LineChart } from "echarts/charts";
 import {
    VisualMapComponent,
@@ -803,7 +799,8 @@ use([
    LineChart,
    TitleComponent,
    TooltipComponent,
-   LegendComponent
+   LegendComponent,
+   SVGRenderer
 ]);
 
 export default {
@@ -831,6 +828,28 @@ export default {
          s_tahun_options: ['2021','2022','2023'],
          s_kantor: null,
          s_kantor_options: [],
+         s_kantorx: [
+            {
+               nama_kantor: "KPPBC TMP BELAWAN", 
+               kd_kantor: '010700'
+            },
+            {
+               nama_kantor: "KPU TANJUNG PRIOK", 
+               kd_kantor: '040300'
+            },
+            {
+               nama_kantor: "KPU SOEKARNO-HATTA", 
+               kd_kantor: '050100'
+            },
+            {
+               nama_kantor: "KPPBC TMP TANJUNG EMAS", 
+               kd_kantor: '060100'
+            },
+            {
+               nama_kantor: "KPPBC TMP TANJUNG PERAK", 
+               kd_kantor: '070100'
+            }
+         ],
          s_base: null,
          s_base_options: [{name: 'Komoditi', code: 1}, {name: 'HS Code', code: 2}],
          s_komoditi: null,
@@ -845,9 +864,12 @@ export default {
          s_pelabuhan_utama: [
             {
                nama_kantor: "PELABUHAN UTAMA", 
-               kd_kantor: '040300,060100,070100'
+               kd_kantor: '010700,050100,040300,060100,070100'
             }
          ],
+         initOptions: {
+            renderer: "svg"
+         },
          c_teus_bulanan: {
             title: {
                show: true,
@@ -878,14 +900,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -946,14 +968,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1004,7 +1026,14 @@ export default {
                show: true,
                orient: 'horizontal',
                textStyle: {fontSize: 10},
-               top: 60
+               top: 60,
+               // formatter: function (name) {
+               //    // console.log()
+               //    return name
+               // },
+               // tooltip: {
+               //    show: true
+               // }
             },
             tooltip: {
                trigger: 'axis',
@@ -1012,14 +1041,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1080,14 +1109,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 50,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1146,14 +1175,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 50,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1188,7 +1217,7 @@ export default {
             title: {
                show: true,
                text: 'Average Bayar Per Teus',
-               subtext: 'Teus bulanan',
+               subtext: 'Average Bayar Per Teus',
                left: 'center'
             },
             toolbox: {
@@ -1212,14 +1241,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1278,14 +1307,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1320,7 +1349,7 @@ export default {
             title: {
                show: true,
                text: 'Average BM Per Teus',
-               subtext: 'Teus bulanan',
+               subtext: 'Average BM Per Teus',
                left: 'center'
             },
             toolbox: {
@@ -1344,14 +1373,14 @@ export default {
                   var f = `${params[0].name}<br/>`;
                   for (var i=0; i<params.length; i++) {
                      f += `${params[i].marker} ${params[i].seriesName}: `+
-                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1].toFixed(0)) + `</b><br/>`;
+                          `<b>` + new Intl.NumberFormat('id').format(params[i].value[1] ? params[i].value[1].toFixed(0) : 0) + `</b><br/>`;
                   }
                   return f;
                }
             },
             grid: {
                show: true,
-               left: 40,
+               left: 60,
                top: 120,
                right: 40,
                bottom: 30
@@ -1419,7 +1448,7 @@ export default {
    mounted() {
       var quickviews = bulmaQuickview.attach();
       this.s_kantor_options = this.s_pelabuhan_utama;
-      this.s_kantor = "040300,060100,070100";
+      this.s_kantor = "010700,050100,040300,060100,070100";
       this.impor();
 
       this.imporTop();
@@ -1602,17 +1631,44 @@ export default {
             setTimeout(() => {
                this.isLoading = false;
 
-               this.c_teus_bulanan.series = res.data.teus.map(e => ({
-                  name: e.name,
-                  data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
-                  type: 'line',
+               // 1
+               this.c_netto.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
                }));
+
+               if (res.data.netto.length > 1) {
+                  this.c_netto.legend.formatter = (name) => { 
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_netto.legend.tooltip = { show: true }
+                  // this.c_netto.grid.top = 130;
+               } else {
+                  this.c_netto.legend.formatter = (name) => { return name }
+                  this.c_netto.legend.tooltip = { show: false }
+               }
 
                this.c_netto.series = res.data.netto.map(e => ({
                   name: e.name,
                   data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
                   type: 'line',
                }));
+               
+               // 2
+               this.c_avg_bayar_per_netto.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.avg_bayar_per_netto.length > 1) {
+                  this.c_avg_bayar_per_netto.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_avg_bayar_per_netto.legend.tooltip = { show: true }
+               } else {
+                  this.c_avg_bayar_per_netto.legend.formatter = (name) => { return name }
+                  this.c_avg_bayar_per_netto.legend.tooltip = { show: false }
+               }
 
                this.c_avg_bayar_per_netto.series = res.data.avg_bayar_per_netto.map(e => ({
                   name: e.name,
@@ -1620,11 +1676,43 @@ export default {
                   type: 'line',
                }));
 
+               // 3
+               this.c_avg_bayar_per_teus.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.avg_bayar_per_teus.length > 1) {
+                  this.c_avg_bayar_per_teus.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_avg_bayar_per_teus.legend.tooltip = { show: true }
+               } else {
+                  this.c_avg_bayar_per_teus.legend.formatter = (name) => { return name }
+                  this.c_avg_bayar_per_teus.legend.tooltip = { show: false }
+               }
+
                this.c_avg_bayar_per_teus.series = res.data.avg_bayar_per_teus.map(e => ({
                   name: e.name,
                   data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
                   type: 'line',
                }));
+
+               // 4
+               this.c_avg_bm_per_netto.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.avg_bm_per_netto.length > 1) {
+                  this.c_avg_bm_per_netto.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_avg_bm_per_netto.legend.tooltip = { show: true }
+               } else {
+                  this.c_avg_bm_per_netto.legend.formatter = (name) => { return name }
+                  this.c_avg_bm_per_netto.legend.tooltip = { show: false }
+               }
 
                this.c_avg_bm_per_netto.series = res.data.avg_bm_per_netto.map(e => ({
                   name: e.name,
@@ -1632,17 +1720,87 @@ export default {
                   type: 'line',
                }));
 
+               // 5
+               this.c_teus_bulanan.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.teus.length > 1) {
+                  this.c_teus_bulanan.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_teus_bulanan.legend.tooltip = { show: true }
+               } else {
+                  this.c_teus_bulanan.legend.formatter = (name) => { return name }
+                  this.c_teus_bulanan.legend.tooltip = { show: false }
+               }
+
+               this.c_teus_bulanan.series = res.data.teus.map(e => ({
+                  name: e.name,
+                  data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
+                  type: 'line',
+               }));
+
+               // 6
+               this.c_avg_bm_per_teus.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.avg_bm_per_teus.length > 1) {
+                  this.c_avg_bm_per_teus.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_avg_bm_per_teus.legend.tooltip = { show: true }
+               } else {
+                  this.c_avg_bm_per_teus.legend.formatter = (name) => { return name }
+                  this.c_avg_bm_per_teus.legend.tooltip = { show: false }
+               }
+
                this.c_avg_bm_per_teus.series = res.data.avg_bm_per_teus.map(e => ({
                   name: e.name,
                   data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
                   type: 'line',
                }));
 
+               // 7
+               this.c_total_bayar_per_netto.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.total_bayar_per_netto.length > 1) {
+                  this.c_total_bayar_per_netto.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_total_bayar_per_netto.legend.tooltip = { show: true }
+               } else {
+                  this.c_total_bayar_per_netto.legend.formatter = (name) => { return name }
+                  this.c_total_bayar_per_netto.legend.tooltip = { show: false }
+               }
+
                this.c_total_bayar_per_netto.series = res.data.total_bayar_per_netto.map(e => ({
                   name: e.name,
                   data: e.data.map(e => [[null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]],e[1]]),
                   type: 'line',
                }));
+
+               // 8
+               this.c_total_bayar_per_teus.xAxis = res.data.netto.map(e => ({
+                  data: e.data.map(e => [null,'Jan', 'Feb', 'Mar', 'Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'][e[0]])
+               }));
+
+               if (res.data.total_bayar_per_teus.length > 1) {
+                  this.c_total_bayar_per_teus.legend.formatter = (name) => {
+                     var kd_kantor = this.s_kantorx.filter(row => row.nama_kantor === name)[0].kd_kantor
+                     return kd_kantor;
+                  }
+                  this.c_total_bayar_per_teus.legend.tooltip = { show: true }
+               } else {
+                  this.c_total_bayar_per_teus.legend.formatter = (name) => { return name }
+                  this.c_total_bayar_per_teus.legend.tooltip = { show: false }
+               }
 
                this.c_total_bayar_per_teus.series = res.data.total_bayar_per_teus.map(e => ({
                   name: e.name,
