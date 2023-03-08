@@ -27,7 +27,7 @@
       </div>
 
       <div id="quickviewDefault" class="quickview">
-         <header class="quickview-header is-dark" style="border-bottom: 1px solid #363636 !important;">
+         <header class="quickview-header is-light">
             <p class="title"><i class="fa-regular fa-filter-list"></i></p>
             <span class="delete" data-dismiss="quickview"></span>
          </header>
@@ -75,9 +75,9 @@
          <footer class="quickview-footer"></footer>
       </div>
 
-      <div class="columns is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd">
-         <!-- 25 Komoditi Terbesar -->
-         <div class="column is-full">
+      <div class="columns mt-1 is-multiline is-variable is-1-mobile is-1-tablet is-1-desktop is-1-widescreen is-1-fullhd">
+         <div class="is-size-6 has-text-weight-bold mb-5">Data Blokir</div>
+         <div class="column box is-full">
             <div class="is-relative">
                <loading class="loading" v-model:active="isLoading"
                :can-cancel="false"
@@ -92,40 +92,50 @@
                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                   <thead>
                      <tr>
+                        <th>#</th>
                         <th>Nama</th>
                         <th>NPWP</th>
-                        <th>Kantor</th>
-                        <th>No. SKEP</th>
-                        <th>Tgl. Blokir</th>
-                        <th>Alasan Blokir</th>
-                        <th>Wk. Cabut</th>
-                        <th>Alasan Cabut</th>
+                        <th class="is-hidden-touch">Kantor</th>
+                        <th class="is-hidden-touch">No. SKEP</th>
+                        <th class="is-hidden-touch">Tgl. Blokir</th>
+                        <th class="is-hidden-touch">Alasan Blokir</th>
+                        <th class="is-hidden-touch">Wk. Cabut</th>
+                        <th class="is-hidden-touch">Alasan Cabut</th>
                         <th>Status</th>
+                        <th></th>
                      </tr>
                   </thead>
                   <tbody>
                      <template v-if="data_blokir.length !== 0">
                         <tr v-for="(d, i) in data_blokir" :key="i">
+                           <td>{{ i + 1 }}</td>
                            <td style="word-wrap: break-word; white-space: pre-wrap;">{{ d.NAMA }}</td>
                            <td>{{ d.NPWP9 }}</td>
-                           <td>{{ d.KD_KANTOR }}</td>
-                           <td>{{ d.NO_SKEP }}</td>
-                           <td>{{ d.TGL_BLOKIR }}</td>
-                           <td>{{ d.ALASAN_BLOKIR }}</td>
-                           <td>{{ d.WK_CABUT }}</td>
-                           <td>{{ d.ALASAN_CABUT }}</td>
+                           <td class="is-hidden-touch">{{ d.KD_KANTOR }}</td>
+                           <td class="is-hidden-touch">{{ d.NO_SKEP }}</td>
+                           <td class="is-hidden-touch">{{ d.TGL_BLOKIR }}</td>
+                           <td class="is-hidden-touch">{{ d.ALASAN_BLOKIR }}</td>
+                           <td class="is-hidden-touch">{{ d.WK_CABUT }}</td>
+                           <td class="is-hidden-touch">{{ d.ALASAN_CABUT }}</td>
                            <td>{{ d.STATUS }}</td>
+                           <td>
+                              <button class="button is-small is-dark is-pulled-right" data-target="blokir-modal" v-on:click="openBlModal($event, i)">
+                                 <i class="fa-light fa-memo-circle-info"></i>
+                              </button>
+                           </td>
                         </tr>
                      </template>
                      <template v-else>
                         <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
                            <td>No data..</td>
                            <td></td>
                            <td></td>
+                           <td class="is-hidden-touch"></td>
+                           <td class="is-hidden-touch"></td>
+                           <td class="is-hidden-touch"></td>
+                           <td class="is-hidden-touch"></td>
+                           <td class="is-hidden-touch"></td>
+                           <td class="is-hidden-touch"></td>
                            <td></td>
                            <td></td>
                         </tr>
@@ -133,6 +143,114 @@
                   </tbody>
                </table>
             </div>
+            <!-- modal start -->
+            <div id="blokir-modal" class="modal" ref="blmodal">
+               <div class="modal-background"></div>
+               <div class="modal-card">
+                  <header class="modal-card-head">
+                     <p class="modal-card-title">Details</p>
+                     <button class="delete" aria-label="close" v-on:click="closeBlModal"></button>
+                  </header>
+                  <section class="modal-card-body">
+                     <!-- {{ selected_data_blokir }} -->
+                     <!-- Nama -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Nama</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.NAMA">
+                        </div>
+                     </div>
+                     <!-- NPWP -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">NPWP</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.NPWP9">
+                        </div>
+                     </div>
+                     <!-- KODE KANTOR -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Kantor</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.KD_KANTOR">
+                        </div>
+                     </div>
+                     <!-- TGL BLOKIR -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Tgl. Blokir</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.TGL_BLOKIR">
+                        </div>
+                     </div>
+                     <!-- ALASAN BLOKIR -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Alasan Blokir</label>
+                        </div>
+                        <div class="field-body">
+                           <textarea class="textarea" rows="3" type="text" :value="selected_data_blokir.ALASAN_BLOKIR"></textarea>
+                        </div>
+                     </div>
+                     <!-- NO. SKEP -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">No. SKEP</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.NO_SKEP">
+                        </div>
+                     </div>
+                     <!-- TGL> SKEP -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Tgl. SKEP</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.TGL_SKEP">
+                        </div>
+                     </div>
+                     <!-- WK CABUT -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Wk. Cabut</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.WK_CABUT">
+                        </div>
+                     </div>
+                     <!-- ALASAN CABUT -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Alasan Cabut</label>
+                        </div>
+                        <div class="field-body">
+                           <textarea class="textarea" rows="3" type="text" :value="selected_data_blokir.ALASAN_CABUT"></textarea>
+                        </div>
+                     </div>
+                     <!-- Status -->
+                     <div class="field is-horizontal">
+                        <div class="field-label is-normal is-flex-grow-2">
+                           <label class="label has-text-left">Status</label>
+                        </div>
+                        <div class="field-body">
+                           <input class="input" type="text" :value="selected_data_blokir.STATUS">
+                        </div>
+                     </div>
+                  </section>
+                  <footer class="modal-card-foot">
+                     <!-- <button class="button is-success">Save changes</button>
+                     <button class="button">Cancel</button> -->
+                  </footer>
+               </div>
+            </div>
+            <!-- end -->
          </div>
          <div v-show="false" class="column is-half-widescreen is-half-fullhd"></div>
       </div>
@@ -171,13 +289,17 @@ export default {
          nama: null,
          s_kantor: null,
          s_kantor_options: [],
-         data_blokir: []
+         data_blokir: [],
+         selected_data_blokir: []
       }
    },
    watch: {
    },
    mounted() {
       var quickviews = bulmaQuickview.attach();
+      // document.addEventListener('DOMContentLoaded', () => {
+      //    function openModal
+      // });
    },
    computed: {
       getKantorBC: function() {
@@ -283,6 +405,16 @@ export default {
                this.toast.error("NPWP DAN/ATAU NAMA HARUS ADA");
             }
          }
+      },
+      openBlModal: function(e, i) {
+         var el = this.$refs.blmodal;
+         el.classList.add('is-active');
+         this.selected_data_blokir = this.data_blokir[i];
+         console.log(this.selected_data_blokir);
+      },
+      closeBlModal: function() {
+         var el = this.$refs.blmodal;
+         el.classList.remove('is-active');
       }
    }
 }

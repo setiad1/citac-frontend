@@ -12,7 +12,7 @@
 
          <!-- QUickview -->
          <div id="quickviewDefault" class="quickview">
-            <header class="quickview-header is-dark">
+            <header class="quickview-header is-light">
                <p class="title"><i class="fa-regular fa-filter-list"></i></p>
                <span class="delete" data-dismiss="quickview"></span>
             </header>
